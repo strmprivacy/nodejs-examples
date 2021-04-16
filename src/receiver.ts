@@ -14,7 +14,7 @@ async function startReceiver() {
     });
 
     receiver.on("error", (error) => {
-        console.log("Receiver", error.message);
+        console.log("Receiver", error);
     });
 
     try {

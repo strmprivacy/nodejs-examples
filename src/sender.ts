@@ -20,7 +20,7 @@ async function startSender() {
 
     // Make sure to listen for error events, otherwise Node does not handle the error events (they're escalated)
     sender.on("error", (error) => {
-        console.log("Sender", error.message);
+        console.log("Sender", error);
     });
 
     await sender.connect()
@@ -38,7 +38,7 @@ async function startSender() {
         } catch (e) {
             console.error(`Error: ${e}`);
         }
-    }, 1000);
+    }, 100);
 }
 
 // This interface is only required, if a schema is used like this (through a file). A future example will also contain generated classes from the schema, which simplifies this example even more.

@@ -1,6 +1,5 @@
 {
-  "gatewayUrl": "https://in.strm.services/event",
-  "stsUrl": "https://auth.strm.services",
-  "egressUrl": "wss://out.strm.services",
-  "schemaId": "clickstream"
+  "gatewayUrl": "https://in.dev.strm.services/event",
+  "stsUrl": "https://auth.dev.strm.services",
+  "egressUrl": "wss://out.dev.strm.services"
 }

@@ -1,21 +1,17 @@
-import {Type} from "avsc";
-import * as fs from "fs";
-import {ClientStreamEvent, Sender} from "@streammachine.io/nodejs-driver";
+import { Sender } from "@streammachine.io/nodejs-driver";
+import { ClickstreamEvent } from "@streammachine.io/schemas-clickstream-avro";
+import { randomInt } from "crypto";
 
 const CONFIG = require("../assets/config.json");
 
 // Copy the template credentials file, name it `credentials.json` and fill out the values
 const CREDENTIALS = require("../assets/credentials.json");
 
-// Hard coded schema for this example
-const SCHEMA = JSON.parse(fs.readFileSync("assets/clickstream.avsc", "utf-8"));
-
-async function startSender() {
+const startSender = async () => {
     // Note: the schema id is hard coded in this example, in the config.json. This will be dynamically determined in a future version
     const sender = new Sender({
         ...CONFIG,
-        ...CREDENTIALS,
-        type: Type.forSchema(SCHEMA),
+        ...CREDENTIALS
     });
 
     // Make sure to listen for error events, otherwise Node does not handle the error events (they're escalated)
@@ -25,52 +21,42 @@ async function startSender() {
 
     await sender.connect()
         .catch(e => {
-            console.error(`Connect error ${e}`);
+            console.error(`Connect error ${e}`, e);
         });
 
     setInterval(async function () {
         try {
-            const r = await sender.send(EVENT);
+            const r = await sender.send(createEvent(), "AVRO_BINARY");
 
+            console.log(`Status ${r.status}`)
             if (r.status !== 204) {
-                console.debug(`An error occurred while sending event:`, r)
+                console.error(`An error occurred while sending event:`, r)
             }
         } catch (e) {
-            console.error(`Error: ${e}`);
+            console.error(`Error: ${e.message}`, e);
         }
     }, 100);
-}
-
-// This interface is only required, if a schema is used like this (through a file). A future example will also contain generated classes from the schema, which simplifies this example even more.
-interface MyStreamEvent extends ClientStreamEvent {
-    abTests: string[];
-    eventType: string;
-    customer: { id: string };
-    referrer: string;
-    userAgent: string;
-    producerSessionId: string;
-    conversion: number;
-    url: string;
-}
-
-const EVENT: MyStreamEvent = {
-    abTests: ["abc"],
-    eventType: "button x clicked",
-    customer: {id: "customer-id"},
-    referrer: "https://www.streammachine.io",
-    userAgent: "node-js",
-    producerSessionId: "prodsesid",
-    conversion: 1,
-    url: "https://portal.streammachine.io/",
-    strmMeta: {
-        // the other fields are filled in by the Stream Machine Client
-        consentLevels: [0, 1, 2],
-    },
 };
 
-async function sleep(millis) {
-    return new Promise(resolve => setTimeout(resolve, millis));
-}
+const createEvent = () => {
+    const EVENT = new ClickstreamEvent();
+    EVENT.abTests = ["abc"];
+    EVENT.eventType = "button x clicked";
+    EVENT.customer = { id: "customer-id-" }; // + Math.round(Math.random() * 1000)
+    EVENT.referrer = "https://www.streammachine.io";
+    EVENT.userAgent = "node-js";
+    EVENT.producerSessionId = "session-id-"; // + Math.round(Math.random() * 100000)
+    EVENT.conversion = 1;
+    EVENT.url = "https://portal.streammachine.io/";
+    EVENT.strmMeta = {
+        eventContractRef: 'jankees/clickstreamjankeestest/0.1.0',
+        // the other fields are filled in by the Stream Machine Client
+        consentLevels: [0, 1, 2]
+    };
+    return EVENT;
+};
+
+const EVENT = createEvent();
 
 startSender();
 

@@ -19,6 +19,7 @@
     "printWidth": 100
   },
   "dependencies": {
-    "@streammachine.io/nodejs-driver": "^1.2.0"
+    "@streammachine.io/nodejs-driver": "0.4.0",
+    "@streammachine.io/schemas-clickstream-avro": "0.3.0"
   }
 }

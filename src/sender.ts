@@ -49,7 +49,7 @@ const createEvent = () => {
     EVENT.conversion = 1;
     EVENT.url = "https://portal.streammachine.io/";
     EVENT.strmMeta = {
-        eventContractRef: 'jankees/clickstreamjankeestest/0.1.0',
+        eventContractRef: 'streammachine/clickstream/0.3.0',
         // the other fields are filled in by the Stream Machine Client
         consentLevels: [0, 1, 2]
     };

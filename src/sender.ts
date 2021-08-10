@@ -1,5 +1,5 @@
 import { Sender } from '@streammachine.io/nodejs-driver';
-import { DemoEvent } from '@streammachine.io/schemas-demo-avro';
+import { DemoEvent } from '@streammachine.io/schema-demo-avro';
 
 const CONFIG = require('../assets/config.json');
 
@@ -43,10 +43,10 @@ const createEvent = () => {
     consentLevels: [0],
   };
 
-  event.unique_identifier = 'string';
-  event.some_sensitive_value = 'A value that should be encrypted';
-  event.consistent_value = 'a-user-session';
-  event.not_sensitive_value = 'Hello from NodeJS';
+  event.uniqueIdentifier = 'string';
+  event.someSensitiveValue = 'A value that should be encrypted';
+  event.consistentValue = 'a-user-session';
+  event.notSensitiveValue = 'Hello from NodeJS';
 
   return event;
 };

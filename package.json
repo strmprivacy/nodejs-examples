@@ -28,6 +28,6 @@
   },
   "dependencies": {
     "@streammachine.io/nodejs-driver": "1.3.2",
-    "@streammachine.io/schema-demo-avro": "1.0.2"
+    "@streammachine.io/schemas-demo-avro": "1.0.2-1"
   }
 }

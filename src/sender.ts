@@ -1,4 +1,4 @@
-import { Sender } from '@streammachine.io/nodejs-driver';
+import { Sender } from '@strmprivacy/nodejs-driver';
 import { DemoEvent } from '@streammachine.io/schemas-demo-avro';
 
 const CONFIG = require('../assets/config.json');

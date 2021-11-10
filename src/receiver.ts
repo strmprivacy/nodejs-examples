@@ -1,4 +1,4 @@
-import { Receiver } from '@streammachine.io/nodejs-driver';
+import { Receiver } from '@strmprivacy/nodejs-driver';
 
 const CONFIG = require('../assets/config.json');
 const CREDENTIALS = require('../assets/credentials.json');

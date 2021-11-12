@@ -1,5 +1,5 @@
 import { Sender } from '@strmprivacy/nodejs-driver';
-import { DemoEvent } from '@streammachine.io/schemas-demo-avro';
+import { DemoEvent } from '@strmprivacy/schemas-demo-avro';
 
 const CONFIG = require('../assets/config.json');
 
@@ -39,7 +39,7 @@ const startSender = async () => {
 const createEvent = () => {
   const event = new DemoEvent();
   event.strmMeta = {
-    eventContractRef: 'streammachine/example/1.2.3',
+    eventContractRef: 'strmprivacy/example/1.2.3',
     consentLevels: [0],
   };
 

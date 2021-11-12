@@ -27,7 +27,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
-    "@streammachine.io/schemas-demo-avro": "1.0.2-1",
+    "@strmprivacy/schemas-demo-avro": "1.0.2",
     "@strmprivacy/nodejs-driver": "2.0.0"
   }
 }

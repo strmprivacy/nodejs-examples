@@ -1,5 +1,7 @@
 {
-  "gatewayUrl": "https://events.strmprivacy.io/event",
-  "stsUrl": "https://sts.strmprivacy.io",
+  "gatewayUrl": "https://events.dev.strmprivacy.io/event",
+  "authScheme": "https",
+  "authHost": "accounts.dev.strmprivacy.io",
+  "authEndpoint": "/auth/realms/streams/protocol/openid-connect/token",
   "egressUrl": "wss://websocket.strmprivacy.io"
 }

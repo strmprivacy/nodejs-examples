@@ -12,7 +12,6 @@ const startSender = async () => {
     ...CONFIG,
     ...CREDENTIALS,
   });
-
   // Make sure to listen for error events, otherwise Node does not handle the error events (they're escalated)
   sender.on('error', (error) => {
     console.log('Sender', error);

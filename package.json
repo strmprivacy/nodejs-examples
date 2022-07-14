@@ -27,7 +27,7 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "dependencies": {
-    "@strmprivacy/schemas-demo-avro": "1.0.2",
-    "@strmprivacy/nodejs-driver": "2.0.0"
+    "@strmprivacy/nodejs-driver": "3.0.0",
+    "@strmprivacy/schemas-demo-avro": "1.0.2"
   }
 }

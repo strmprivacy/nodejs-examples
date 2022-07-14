@@ -37,7 +37,6 @@ const startSender = async () => {
 
 const createEvent = () => {
   const event = new DemoEvent();
-
   event.strmMeta = {
     eventContractRef: 'strmprivacy/example/1.3.0',
     consentLevels: [0],
